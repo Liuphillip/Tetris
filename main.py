@@ -1,2 +1,1 @@
-print("Hello World!")
-print("I love phillip")
+print("Are aliens real?")
