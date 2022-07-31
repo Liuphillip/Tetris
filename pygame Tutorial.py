@@ -3,10 +3,13 @@ import os
 
 WIDTH, HEIGHT = 900,500
 WINDOW = pygame.display.set_mode((WIDTH,HEIGHT))
-GREEN = (0,150,0)
+GREEN = (50,200,50)
+BLACK = (0,0,0)
 FPS = 60
 SHIP_WIDTH, SHIP_HEIGHT = 55,40
 VELOCITY = 5
+
+BORDER = pygame.Rect(WIDTH/2 - 5, 0, 10, HEIGHT)
 
 YELLOW_SHIP_IMAGE = pygame.image.load(
     os.path.join('Assets','spaceship_yellow.png'))
@@ -22,28 +25,30 @@ pygame.display.set_caption("The Game")
 
 def draw_window(red,yellow):
     WINDOW.fill(GREEN)
+    pygame.draw.rect(WINDOW, BLACK, BORDER)
     WINDOW.blit(YELLOW_SHIP,(yellow.x,yellow.y))
     WINDOW.blit(RED_SHIP,(red.x,red.y))
 
+
     pygame.display.update()
 def yellow_movement(keys_pressed,yellow):
-    if keys_pressed[pygame.K_a]:  # LEFT
+    if keys_pressed[pygame.K_a] and yellow.x - VELOCITY > BORDER.x:  # LEFT
         yellow.x -= VELOCITY
-    if keys_pressed[pygame.K_d]:  # RIGHT
+    if keys_pressed[pygame.K_d] and yellow.x + VELOCITY + yellow.width < WIDTH:  # RIGHT
         yellow.x += VELOCITY
-    if keys_pressed[pygame.K_w]:  # UP
+    if keys_pressed[pygame.K_w] and yellow.y - VELOCITY > 0:  # UP
         yellow.y -= VELOCITY
-    if keys_pressed[pygame.K_s]:  # DOWN
+    if keys_pressed[pygame.K_s] and yellow.y + VELOCITY + yellow.height < HEIGHT:  # DOWN
         yellow.y += VELOCITY
 
 def red_movement(keys_pressed,yellow):
-    if keys_pressed[pygame.K_LEFT]:  # LEFT
+    if keys_pressed[pygame.K_LEFT] and yellow.x - VELOCITY > 0:  # LEFT
         yellow.x -= VELOCITY
-    if keys_pressed[pygame.K_RIGHT]:  # RIGHT
+    if keys_pressed[pygame.K_RIGHT] and yellow.x + VELOCITY + yellow.width < BORDER.x:  # RIGHT
         yellow.x += VELOCITY
-    if keys_pressed[pygame.K_UP]:  # UP
+    if keys_pressed[pygame.K_UP] and yellow.y - VELOCITY > 0:  # UP
         yellow.y -= VELOCITY
-    if keys_pressed[pygame.K_DOWN]:  # DOWN
+    if keys_pressed[pygame.K_DOWN]and yellow.y + VELOCITY + yellow.height < HEIGHT:  # DOWN
         yellow.y += VELOCITY
 
 def main():
