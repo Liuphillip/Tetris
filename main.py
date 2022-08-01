@@ -1,9 +1,9 @@
 import pygame
 
 FPS = 60
-WIDTH = 500
-HEIGHT = 1000
-BLOCK_WIDTH, BLOCK_HEIGHT = 50, 50
+WIDTH = 300
+HEIGHT = 600
+BLOCK_WIDTH, BLOCK_HEIGHT = 30, 30
 GRID_WIDTH, GRID_HEIGHT = WIDTH/BLOCK_WIDTH, HEIGHT/BLOCK_HEIGHT
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -15,7 +15,7 @@ GREY = (100, 100, 100)
 
 
 def create_grid(locked_pos = {}):
-    grid = [[(0,0,0) for n in range (GRID_WIDTH)] for n in range(GRID_HEIGHT)]
+    grid = [[(0,0,0) for n in range(GRID_WIDTH)] for n in range(GRID_HEIGHT)]
 
     for row in range(len(grid)):
         for col in range(len(grid[row])):
